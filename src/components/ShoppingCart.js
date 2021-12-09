@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import ProductContext from '../contexts/ProductContext';
+import CartContext from '../contexts/CartContext';
 
 // Components
 import Item from './ShoppingCartItem';
 
 const ShoppingCart = () => {
-	const cart = useContext(ProductContext);
-
+	const {cart} = useContext(CartContext);
+	console.log(cart);
 	const getCartTotal = () => {
 		return cart.reduce((acc, value) => {
 			return acc + value.price;
@@ -14,12 +14,12 @@ const ShoppingCart = () => {
 	};
 
 	return (
-		<div className="shopping-cart">
+		<div className='shopping-cart'>
 			{cart.map((item, idx) => (
 				<Item key={item.id + idx*10} {...item} />
 			))}
 
-			<div className="shopping-cart__checkout">
+			<div className='shopping-cart__checkout'>
 				<p>Total: ${getCartTotal()}</p>
 				<button>Checkout</button>
 			</div>
